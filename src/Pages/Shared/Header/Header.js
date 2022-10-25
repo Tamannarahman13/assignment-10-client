@@ -17,11 +17,13 @@ const Header = () => {
                 <div className="flex-1">
                     <h3 className='ms-5 text-white'>Learn Tree</h3>
                 </div>
-                <div className="">
-                    {user?.email ? <><button onClick={handleLogout} className='bg-dark text-white'>Logout</button></> : <Link to='/login' className='no-underline mr-5 text-white'>Login</Link>}
+                <div className="me-5">
 
-                    <Link to='/register' className='no-underline mr-5 text-white'>Register</Link>
 
+                    <Link to='/blog' className='no-underline mr-7 text-white font-bold'>Blog</Link>
+                    <Link to='/courses' className='no-underline mr-7 text-white font-bold'>Courses</Link>
+                    <Link to='/courses' className='no-underline mr-7 text-white font-bold'>FAQ</Link>
+                    {user?.email ? <><button onClick={handleLogout} className='bg-dark-100 text-white mr-3 p-2 rounded'>Logout</button></> : <Link to='/login' className='no-underline mr-5 text-white font-bold'>Login</Link>}
                 </div>
             </div>
         </div>
