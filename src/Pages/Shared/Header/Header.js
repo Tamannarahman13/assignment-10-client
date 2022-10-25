@@ -15,12 +15,12 @@ const Header = () => {
         <div>
             <div className="navbar bg-success">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <h3 className='ms-5 text-white'>Learn Tree</h3>
                 </div>
                 <div className="">
-                    {user?.email ? <><button onClick={handleLogout} className='bg-dark text-white'>Logout</button></> : <Link to='/login'>Login</Link>}
+                    {user?.email ? <><button onClick={handleLogout} className='bg-dark text-white'>Logout</button></> : <Link to='/login' className='no-underline mr-5 text-white'>Login</Link>}
 
-                    <Link to='/register'>Register</Link>
+                    <Link to='/register' className='no-underline mr-5 text-white'>Register</Link>
 
                 </div>
             </div>
