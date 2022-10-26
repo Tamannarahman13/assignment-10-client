@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/UserContext';
+import logo from '../../../assets/image/logo5.png'
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext)
@@ -15,6 +16,7 @@ const Header = () => {
         <div>
             <div className="navbar bg-success">
                 <div className="flex-1">
+                    {/* <img className='h-12 w-15 ms-5' src={logo} alt="" /> */}
                     <h3 className='ms-5 text-white'>Learn Tree</h3>
                 </div>
                 <div className="me-5">
