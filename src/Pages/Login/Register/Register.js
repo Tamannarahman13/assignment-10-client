@@ -11,10 +11,6 @@ import { AuthContext } from '../../../context/UserContext';
 
 const Register = () => {
     const { createUser, updateName, varifyEmail, signInWithGoogle } = useContext(AuthContext)
-
-
-
-
     //  email and password
     const handleSubmit = (event) => {
         event.preventDefault()

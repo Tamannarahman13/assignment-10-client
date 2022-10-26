@@ -1,17 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { AuthContext } from '../../context/UserContext';
 
 const Login = () => {
+    const { signin, signInWithGoogle } = useContext(AuthContext)
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+
+
+        const email = event.target.email.value
+        const password = event.target.password.value
+        signin(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => console.error(error))
+
+    }
+
+    // google
+
+    const handleGoogleSignin = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user);
+            })
+    }
+
     return (
         <div>
             <div className='flex justify-center items-center pt-8'>
                 <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                     <div className='mb-8 text-center'>
-                        <h1 className='my-3 text-4xl text-success font-bold'>Login</h1>
-
+                        <h1 className='my-3 text-4xl font-bold text-success'>Sign in</h1>
+                        <p className='text-sm text-gray-400'>
+                            Sign in to access your account
+                        </p>
                     </div>
-                    <form
+                    <form onSubmit={handleSubmit}
                         noValidate=''
                         action=''
                         className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -25,13 +54,13 @@ const Login = () => {
                                     type='email'
                                     name='email'
                                     id='email'
-                                    placeholder='Enter Your Email'
+                                    placeholder='Enter Your Email Here'
                                     className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                     data-temp-mail-org='0'
                                 />
                             </div>
                             <div>
-                                <div className=''>
+                                <div className='flex justify-between'>
                                     <label htmlFor='password' className='text-sm mb-2'>
                                         Password
                                     </label>
@@ -68,12 +97,12 @@ const Login = () => {
                         <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     </div>
                     <div className=''>
-                        <button className="w-full text-white px-8 py-3 btn gap-2 d-flex text-center bg-success">
-                            Login With Google
+                        <button onClick={handleGoogleSignin} className="w-full text-white px-8 py-3 btn gap-2 d-flex text-center bg-success">
+                            Sign Up With Google
                             <FaGoogle></FaGoogle>
                         </button>
-                        <button className=" w-full text-white px-8 p-y-3 mt-3 btn gap-2 d-flex text-center bg-success">
-                            Login With Github
+                        <button className="w-full text-white px-8 py-3 mt-3 btn gap-2 d-flex text-center bg-success">
+                            Sign Up With Github
                             <FaGithub></FaGithub>
                         </button>
                     </div>
