@@ -33,7 +33,7 @@ input[type="checkbox"].toggle+label::after {
     left: .2em;
     width: 3.4em;
     height: 3.2em;
-    background-color: hsl(0, 4%, 5%);
+    background-color: hsl(130, 95%, 50%);
     color: white;
     border-radius: 1.2em;
     transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
@@ -45,5 +45,5 @@ input[type="checkbox"].toggle+label::after {
 input[type="checkbox"].toggle:checked+label::after {
     content: "light";
     transform: translateX(100%);
-    background-color: hsl(100, 87%, 12%);
+    background-color: hsl(100, 92%, 20%);
 }
