@@ -8,6 +8,7 @@ import Login from "../../Pages/Login/Login";
 
 
 import Register from "../../Pages/Login/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -38,8 +39,8 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/courses/:id',
-                element: <CourseDetail></CourseDetail>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                element: <PrivateRoute><CourseDetail></CourseDetail></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://assignment-10-server-steel.vercel.app/courses/${params.id}`)
             }
 
         ]
