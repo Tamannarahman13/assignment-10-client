@@ -12,7 +12,7 @@ const Course = ({ course }) => {
                     <figure><img src={img} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title font-semibold">{name}</h2>
-                        <button className='bg-success text-white py-3'>Details</button>
+                        <button className='bg-success text-white py-3 rounded'>Details</button>
                     </div>
                 </div>
             </div>
