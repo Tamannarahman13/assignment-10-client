@@ -12,7 +12,7 @@ const Course = ({ course }) => {
                     <figure><img src={img} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title font-semibold">{name}</h2>
-                        <Link to={`/courses/${id}`} className='bg-success text-white py-3 rounded'>Details</Link>
+                        <Link to={`/courses/${id}`} className='bg-success text-white py-3 rounded no-underline text-center'>Details</Link>
                     </div>
                 </div>
             </div>
