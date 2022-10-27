@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css'
 
@@ -10,38 +10,43 @@ import { AuthContext } from '../../../context/UserContext';
 
 
 const Register = () => {
-    const { createUser, updateName, varifyEmail, signInWithGoogle } = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const { createUser, updateUserProfile, varifyEmail, signInWithGoogle } = useContext(AuthContext)
     //  email and password
     const handleSubmit = (event) => {
         event.preventDefault()
+        const form = event.target
 
-
-        const name = event.target.name.value
-        const email = event.target.email.value
-        const password = event.target.password.value
+        const photoURL = form.photoURL.value
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        console.log(name.photoURL, email, password)
 
         createUser(email, password)
             .then(result => {
-                console.log(result.user)
-
-                updateName(name)
-                    .then(() => {
-                        // Toast.success('name updated')
-                        // console.log(auth.currentUser.displayName)
-
-
-                        varifyEmail()
-                            .then(() => {
-
-
-                            });
-
-
-                    }).catch((error) => {
-
-                    });
+                const user = (result.user)
+                console.log(user)
+                form.reset();
+                setError('')
+                handleUpdateUserProfile(name, photoURL)
 
             })
+            .catch(error => {
+                console.error(error);
+                setError(error.message)
+            })
+    }
+
+
+    const handleUpdateUserProfile = (name, photoURl) => {
+        const profile = {
+            displayName: name,
+            photoURl: photoURl
+
+        }
+        updateUserProfile(profile)
+            .then(() => { })
             .catch(error => console.error(error))
     }
 
@@ -83,13 +88,26 @@ const Register = () => {
                             </div>
                             <div>
                                 <label htmlFor='email' className='block mb-2 text-sm'>
+                                    PhohoURL
+                                </label>
+                                <input
+                                    type='text'
+                                    name='photoURL'
+                                    id='name'
+                                    placeholder='Enter Your PhotoURL Here'
+                                    className='w-full px-3 py-2 border rounded-md border-gray-400 focus:border-gray-900 bg-gray-200 text-gray-900'
+                                // data-temp-mail-org='0'
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor='email' className='block mb-2 text-sm'>
                                     Email address
                                 </label>
                                 <input
                                     type='email'
                                     name='email'
                                     id='email'
-                                    placeholder='Enter Your Email Here'
+                                    placeholder='Enter Your Email Here' required
                                     className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 // data-temp-mail-org='0'
                                 />
@@ -104,10 +122,11 @@ const Register = () => {
                                     type='password'
                                     name='password'
                                     id='password'
-                                    placeholder='*******'
+                                    placeholder='*******' required
                                     className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
                                 />
                             </div>
+                            <p className='text-danger'>{error}</p>
                         </div>
                         <div className='space-y-2'>
                             <div>

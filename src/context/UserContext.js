@@ -18,13 +18,13 @@ const UserContext = ({ children }) => {
     }
 
     // update name
-    const updateName = (name) => {
-        return updateProfile(auth.currentUser, { displayName: name })
+    const updateUserProfile = (profile) => {
+        return updateProfile(auth.currentUser, profile)
     }
 
-    const varifyEmail = () => {
-        return sendEmailVerification(auth.currentUser)
-    }
+    // const varifyEmail = () => {
+    //     return sendEmailVerification(auth.currentUser)
+    // }
     // signin with google
     const signInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider)
@@ -35,15 +35,16 @@ const UserContext = ({ children }) => {
         return signOut(auth)
     }
 
-    const signin = (email, password) => {
+    const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
 
-    const authInfo = { user, createUser, updateName, varifyEmail, signInWithGoogle, logout, signin }
+    const authInfo = { user, createUser, updateUserProfile, signInWithGoogle, logout, signIn }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log('on satate change', currentUser);
             setUser(currentUser)
         })
 
