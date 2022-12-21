@@ -30,7 +30,7 @@ const Login = () => {
 
     }
 
-    // google
+    // Google
 
     const handleGoogleSignin = () => {
         signInWithGoogle()

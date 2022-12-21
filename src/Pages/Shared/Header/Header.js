@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/UserContext';
 import logo from '../../../assets/image/logo5.png'
 import { FaUser } from 'react-icons/fa';
+
 import './Header.css'
 
 const Header = () => {
